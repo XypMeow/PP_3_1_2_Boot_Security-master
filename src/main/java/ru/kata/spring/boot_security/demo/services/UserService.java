@@ -21,10 +21,10 @@ public class UserService implements UserDetailsService {
         System.out.println("🔍 Пытаемся найти пользователя: '" + name + "'");
         User user = userRepository.findByName(name);
         if (user == null) {
-            System.out.println("❌ Пользователь не найден");
+            System.out.println("Пользователь не найден");
             throw new UsernameNotFoundException("User not found: " + name);
         }
-        System.out.println("✅ Найден: " + user.getName() + ", пароль: " + user.getPassword());
+        System.out.println("Найден: " + user.getName() + ", пароль: " + user.getPassword());
         return user;
     }
 

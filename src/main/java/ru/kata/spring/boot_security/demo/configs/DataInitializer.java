@@ -27,11 +27,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Создаём роли
         Role roleUser = getOrCreateRole("ROLE_USER");
         Role roleAdmin = getOrCreateRole("ROLE_ADMIN");
 
-        // Создаём пользователей, если их нет
         createUserIfNotExists("user", 25, "user", Set.of(roleUser));
         createUserIfNotExists("admin", 30, "admin", Set.of(roleAdmin, roleUser));
     }

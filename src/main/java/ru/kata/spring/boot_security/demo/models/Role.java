@@ -6,14 +6,14 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles")
-public class Role implements GrantedAuthority { // ← Добавь интерфейс
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String name; // например, "ROLE_USER", "ROLE_ADMIN"
+    private String name;
 
     public Role() {}
 
@@ -30,12 +30,12 @@ public class Role implements GrantedAuthority { // ← Добавь интерф
 
     @Override
     public String getAuthority() {
-        return name; // Spring Security использует это как роль, например: ROLE_USER
+        return name;
     }
 
     @Override
     public String toString() {
-        return name.replace("ROLE_", ""); // для отображения: "ADMIN", "USER"
+        return name.replace("ROLE_", "");
     }
 
     // equals и hashCode (опционально, но желательно)
