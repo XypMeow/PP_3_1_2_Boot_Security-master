@@ -1,4 +1,3 @@
-// ru.kata.spring.boot_security.demo.repositories.RoleRepository
 package ru.kata.spring.boot_security.demo.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;

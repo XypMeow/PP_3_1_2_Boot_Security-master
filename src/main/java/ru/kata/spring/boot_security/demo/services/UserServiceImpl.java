@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 @Transactional
-public class PersonServiceImpl implements PersonService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
     @Autowired
-    public PersonServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }

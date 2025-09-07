@@ -1,5 +1,3 @@
-// src/main/java/ru/kata/spring/boot_security/demo/configs/DataInitializer.java
-
 package ru.kata.spring.boot_security.demo.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
-import ru.kata.spring.boot_security.demo.services.PersonService;
+import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.util.Set;
 
@@ -17,7 +15,7 @@ import java.util.Set;
 public class DataInitializer implements CommandLineRunner {
 
     @Autowired
-    private PersonService personService;
+    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -35,10 +33,10 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private Role getOrCreateRole(String roleName) {
-        Role role = personService.findRoleByName(roleName);
+        Role role = userService.findRoleByName(roleName);
         if (role == null) {
             role = new Role(roleName);
-            personService.saveRole(role);
+            userService.saveRole(role);
         }
         return role;
     }
@@ -50,7 +48,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setAge(age);
             user.setPassword(passwordEncoder.encode(password));
             user.setRoles(roles);
-            personService.save(user);
+            userService.save(user);
             System.out.println("✅ Создан пользователь: " + name);
         } else {
             System.out.println("🟨 Пользователь уже существует: " + name);

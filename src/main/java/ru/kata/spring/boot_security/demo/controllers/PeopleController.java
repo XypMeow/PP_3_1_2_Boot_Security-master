@@ -8,28 +8,28 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.services.PersonService;
+import ru.kata.spring.boot_security.demo.services.UserService;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonService personService;
+    private final UserService userService;
 
     @Autowired
-    public PeopleController(PersonService personService) {
-        this.personService = personService;
+    public PeopleController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("people", personService.index());
+        model.addAttribute("people", userService.index());
         return "people/index";
     }
 
     @GetMapping("/show")
     public String show(@RequestParam("id") int id, Model model) {
-        model.addAttribute("person", personService.show(id));
+        model.addAttribute("person", userService.show(id));
         return "people/show";
     }
 
@@ -44,13 +44,13 @@ public class PeopleController {
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "people/new";
-        personService.save(person);
+        userService.save(person);
         return "redirect:/people";
     }
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
-        model.addAttribute("person", personService.show(id));
+        model.addAttribute("person", userService.show(id));
         return "people/edit";
     }
 
@@ -60,13 +60,13 @@ public class PeopleController {
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "people/edit";
-        personService.update(id, person);
+        userService.update(id, person);
         return "redirect:/people";
     }
 
     @PostMapping("/delete")
     public String delete(@RequestParam("id") int id) {
-        personService.delete(id);
+        userService.delete(id);
         return "redirect:/people";
     }
 

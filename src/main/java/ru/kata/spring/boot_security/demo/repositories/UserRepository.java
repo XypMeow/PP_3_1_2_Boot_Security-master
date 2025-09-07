@@ -7,5 +7,5 @@ import ru.kata.spring.boot_security.demo.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByName(String name);
-    boolean existsByName(String name); // ✅ добавьте это
+    boolean existsByName(String name);
 }

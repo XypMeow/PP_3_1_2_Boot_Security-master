@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Password should not be empty")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
